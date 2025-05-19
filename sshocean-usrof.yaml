@@ -1,0 +1,54 @@
+port: 7890
+socks-port: 7891
+redir-port: 7892
+mixed-port: 7893
+tproxy-port: 7895
+ipv6: false
+mode: rule
+log-level: silent
+allow-lan: true
+external-controller: 0.0.0.0:9090
+secret: ""
+bind-address: "*"
+unified-delay: true
+profile:
+  store-selected: true
+dns:
+  enable: true
+  ipv6: false
+  enhanced-mode: redir-host
+  listen: 127.0.0.1:7874
+  nameserver:
+    - 1.1.1.1
+    - 1.0.0.1
+  fallback:
+    - https://cloudflare-dns.com/dns-query
+    - https://dns.google/dns-query
+  default-nameserver:
+    - 8.8.8.8
+    - 8.8.4.4
+proxies:
+  - name: sshocean-usrof
+    server: id.xvmess.site
+    port: 443
+    type: vmess
+    uuid: 0ce2477d-693c-5683-b73c-9199900119cb
+    alterId: 0
+    cipher: auto
+    tls: true
+    skip-cert-verify: true
+    servername: quiz.staging.vidio.com
+    network: ws
+    ws-opts:
+      path: /vmess
+      headers:
+        Host: 
+    udp: true
+proxy-groups:
+  - name: SSHOCEAN
+    type: select
+    proxies:
+      - sshocean-usrof
+      - DIRECT
+rules:
+  - MATCH,SSHOCEAN
