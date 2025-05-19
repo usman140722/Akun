@@ -1,6 +1,6 @@
 proxies:
   - name: sshocean-usrof
-    server: id.xvmess.site
+    server: quiz.staging.vidio.com
     port: 443
     type: vmess
     uuid: 0ce2477d-693c-5683-b73c-9199900119cb
@@ -8,10 +8,10 @@ proxies:
     cipher: auto
     tls: true
     skip-cert-verify: true
-    servername: quiz.staging.vidio.com
+    servername: id.xvmess.site
     network: ws
     ws-opts:
       path: /vmess
       headers:
-        Host: 
+        Host: id.xvmess.site
     udp: true
